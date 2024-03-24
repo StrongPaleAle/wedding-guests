@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply inline-block py-2 px-6 rounded bg-teal-900 text-white hover:bg-teal-800 focus:bg-teal-800;
+    }
+}
