@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { userSessionStore } from '@/stores/userSessionStore'
+import AppSignForm from '@/components/AppSignForm.vue'
 
-const form = ref({
-    email: '',
-    password: ''
-})
 const userSession = userSessionStore()
 
-const register = async () => {
+const register = async (email: string, password: string) => {
     try {
-        await userSession.signUp(form.value.email, form.value.password)
+        await userSession.signUp(email, password)
         console.log('User registered')
-    } catch (error) {
+    } catch (error: any) {
         console.error(error)
         console.log('User not registered' + error.message)
     }
@@ -22,15 +18,10 @@ const register = async () => {
     <div>
         <h1 class="text-2xl mb-8 font-serif">Register</h1>
 
-        <form class="grid grid-cols-1 gap-6" @submit.prevent="register">
-            <input v-model="form.email" id="register-email" type="email" placeholder="Email" />
-            <input
-                v-model="form.password"
-                id="register-password"
-                type="password"
-                placeholder="Password"
-            />
-            <button class="btn">Register</button>
-        </form>
+        <AppSignForm
+            id="register"
+            action="Register"
+            @submit="register($event.email, $event.password)"
+        />
     </div>
 </template>
