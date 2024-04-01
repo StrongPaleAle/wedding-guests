@@ -49,11 +49,12 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
     const userSession = userSessionStore()
     const canAccess = await userSession.canAccess(to)
-    console.log('canAccess: ', canAccess)
     if (typeof to.meta.needsAuth !== 'number' || canAccess) {
         next()
+    } else if (userSession.user?.id) {
+        next({ name: 'home', params: { alert: 'noPermission' } })
     } else {
-        next({ name: 'login' })
+        next({ name: 'login', params: { alert: 'loginNeeded' } })
     }
 })
 

@@ -2,6 +2,11 @@ import { defineStore } from 'pinia'
 import { supabase } from '@/utils/supabase'
 import type { User, Session } from '@supabase/supabase-js'
 import type { Profile } from '@/utils/types/profile'
+import { useAlerts } from './alertsStore'
+import { useI18n } from 'vue-i18n'
+
+const alerts = useAlerts()
+const { t } = useI18n()
 
 export const userSessionStore = defineStore({
     id: 'userSession',
@@ -11,6 +16,7 @@ export const userSessionStore = defineStore({
         userProfile: null as Profile | null,
         loadingUser: true
     }),
+    persist: true,
     getters: {
         authLevel(): number | null {
             return this.userProfile?.user_group || null
@@ -69,7 +75,7 @@ export const userSessionStore = defineStore({
                     this.userProfile = data
                 }
             } catch (error: any) {
-                alert(error.message)
+                alerts.error(error.message)
             }
         },
         async updateUsername(username: string) {
@@ -88,10 +94,28 @@ export const userSessionStore = defineStore({
 
                 if (error) throw error
                 if (data) {
-                    console.log(data)
+                    alerts.success(t('userUpdated'))
                 }
             } catch (error: any) {
-                alert(error.message)
+                alerts.error(error.message)
+            }
+        },
+        async sendPasswordReset(email: string) {
+            const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/update-password`
+            })
+            if (error) throw error
+            if (data) {
+                alerts.success(t('userUpdated'))
+            }
+        },
+        async resetPassword(new_password: string) {
+            const { data, error } = await supabase.auth.updateUser({
+                password: new_password
+            })
+            if (error) throw error
+            if (data) {
+                alerts.success(t('userUpdated'))
             }
         },
         setUser(session: Session) {
@@ -110,14 +134,22 @@ export const userSessionStore = defineStore({
                 this.loadingUser = false
             })
             supabase.auth.onAuthStateChange((event, session) => {
-                console.log(event, session)
+                //console.log(event, session)
                 if (session && event === 'SIGNED_IN') {
                     this.setUser(session)
                 }
             })
         },
         async canAccess(to: any) {
-            const userLevel = await this.authLevel
+            if (!this.user) {
+                return false
+            }
+            const { data } = await supabase
+                .from('profiles')
+                .select(`user_group`)
+                .eq('id', this.user?.id)
+                .single()
+            const userLevel = data?.user_group
             const needsAuth = to.meta.needsAuth
             console.log('userLevel: ', userLevel)
             console.log('needsAuth: ', needsAuth)

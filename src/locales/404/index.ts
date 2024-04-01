@@ -1,4 +1,4 @@
-export const messages = {
+export const notFoundMessages = {
     en: {
         notfoundTitle: 'Page not found',
         notfoundMessage: "Whatever you were looking for, you won't be able to find it here..."

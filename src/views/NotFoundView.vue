@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { messages } from '@/locales/404/index'
-const { t } = useI18n({ messages: messages })
+import { notFoundMessages } from '@/locales/404/index'
+const { t } = useI18n({ messages: notFoundMessages })
 </script>
 <template>
     <div class="text-center">
