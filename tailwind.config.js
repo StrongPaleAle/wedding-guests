@@ -19,6 +19,13 @@ export default {
             },
             animation: {
                 'fade-in-up': 'fade-in-up 0.5s ease-out'
+            },
+            colors: {
+                copper: {
+                    light: '#CE7C56',
+                    DEFAULT: '#9F543E',
+                    dark: '#73372D'
+                }
             }
         }
     },

@@ -2,36 +2,40 @@
 import { onMounted } from 'vue'
 import { userSessionStore } from '@/stores/userSessionStore'
 import AppSignForm from '@/components/AppSignForm.vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useAlerts } from '@/stores/alertsStore'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const userSession = userSessionStore()
 const router = useRouter()
-const route = useRoute()
+
 const alerts = useAlerts()
 const login = async (email: string, password: string) => {
     try {
         await userSession.signIn(email, password)
-        router.push({ name: 'Profile' })
+        router.push({ name: 'profile' })
     } catch (error: any) {
         alerts.error(error.message)
     }
 }
 onMounted(() => {
     if (userSession.user) {
-        router.push({ name: 'Profile' })
-    }
-    if (route.params.message) {
-        alerts.error(t(route.params.alert as string))
+        router.push({ name: 'profile' })
     }
 })
 </script>
 <template>
     <div>
-        <h1 class="text-2xl mb-8 font-serif">Login</h1>
+        <h1 class="text-2xl mb-8 font-serif">{{ t('signIn') }}</h1>
 
-        <AppSignForm id="login" action="Login" @submit="login($event.email, $event.password)" />
+        <AppSignForm
+            id="login"
+            :action="t('signIn')"
+            @submit="login($event.email, $event.password)"
+        />
+        <RouterLink to="/forgot-password" class="hover:underline">
+            {{ t('forgotPassword') }}
+        </RouterLink>
     </div>
 </template>

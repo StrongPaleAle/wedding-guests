@@ -8,15 +8,13 @@ const userSession = userSessionStore()
 
 <template>
     <div>
-        <div>{{ userSession.userProfile }}</div>
         <div v-if="userSession.user">
-            {{ t('welcome') }} {{ userSession.user.email }}
             <RouterLink class="btn" to="/profile"> Profile </RouterLink>
-            <button class="btn" @click="userSession.signOut">Sign Out</button>
+            <button class="btn" @click="userSession.signOut">{{ t('signOut') }}</button>
         </div>
         <div v-else>
-            <RouterLink class="btn" to="/register"> Register </RouterLink>
-            <RouterLink class="btn" to="/login"> Login </RouterLink>
+            <RouterLink class="btn" to="/register">{{ t('signUp') }}</RouterLink>
+            <RouterLink class="btn" to="/login">{{ t('signIn') }}</RouterLink>
         </div>
     </div>
 </template>

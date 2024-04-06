@@ -33,8 +33,15 @@ function submitForm(email: string, password: string) {
             class="grid grid-cols-1 gap-6"
             @submit.prevent="submitForm(form.email, form.password)"
         >
-            <input v-model="form.email" :id="id + '-email'" type="email" placeholder="Email" />
             <input
+                class="form-input"
+                v-model="form.email"
+                :id="id + '-email'"
+                type="email"
+                placeholder="Email"
+            />
+            <input
+                class="form-input"
                 v-model="form.password"
                 :id="id + '-password'"
                 type="password"

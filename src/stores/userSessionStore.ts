@@ -2,11 +2,8 @@ import { defineStore } from 'pinia'
 import { supabase } from '@/utils/supabase'
 import type { User, Session } from '@supabase/supabase-js'
 import type { Profile } from '@/utils/types/profile'
-import { useAlerts } from './alertsStore'
-import { useI18n } from 'vue-i18n'
-
-const alerts = useAlerts()
-const { t } = useI18n()
+import { useAlerts } from '@/stores/alertsStore'
+import { useRouter } from 'vue-router'
 
 export const userSessionStore = defineStore({
     id: 'userSession',
@@ -46,10 +43,11 @@ export const userSessionStore = defineStore({
             this.session = null
             this.userProfile = null
         },
-        async signUp(email: string, password: string) {
+        async signUp(email: string, password: string, username: string) {
             const { data, error } = await supabase.auth.signUp({
                 email,
-                password
+                password,
+                options: { data: { username } }
             })
 
             if (error) {
@@ -61,6 +59,7 @@ export const userSessionStore = defineStore({
             if (!this.user) {
                 return
             }
+            const alerts = useAlerts()
             try {
                 const user = this.user
 
@@ -82,6 +81,7 @@ export const userSessionStore = defineStore({
             if (!this.user) {
                 return
             }
+            const alerts = useAlerts()
             try {
                 const user = this.user
 
@@ -93,9 +93,6 @@ export const userSessionStore = defineStore({
                     .eq('id', user.id)
 
                 if (error) throw error
-                if (data) {
-                    alerts.success(t('userUpdated'))
-                }
             } catch (error: any) {
                 alerts.error(error.message)
             }
@@ -105,18 +102,12 @@ export const userSessionStore = defineStore({
                 redirectTo: `${window.location.origin}/update-password`
             })
             if (error) throw error
-            if (data) {
-                alerts.success(t('userUpdated'))
-            }
         },
         async resetPassword(new_password: string) {
             const { data, error } = await supabase.auth.updateUser({
                 password: new_password
             })
             if (error) throw error
-            if (data) {
-                alerts.success(t('userUpdated'))
-            }
         },
         setUser(session: Session) {
             this.session = session

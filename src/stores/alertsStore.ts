@@ -3,6 +3,9 @@ import { v4 as uuid } from 'uuid'
 
 export type AlertStyle = 'error' | 'success' | 'warning' | 'info' | 'none'
 
+export function isAlertStyle(alertStyle: string): alertStyle is AlertStyle {
+    return true
+}
 export interface AlertOptions {
     html?: boolean
     closable?: boolean

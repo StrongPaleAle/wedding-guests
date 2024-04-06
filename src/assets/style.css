@@ -2,13 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+    html {
+        color-scheme: dark light;
+    }
     body {
-        @apply antialiased;
+        @apply antialiased  to-teal-950 via-cyan-950 from-blue-950;
+        background-image: radial-gradient(circle at 50% 100%, var(--tw-gradient-stops));
     }
 }
 
 @layer components {
     .btn {
-        @apply inline-block py-2 px-6 rounded bg-teal-900 text-white hover:bg-teal-800 focus:bg-teal-800;
+        @apply inline-block py-2 px-6 rounded bg-copper text-white hover:bg-copper-dark focus:bg-copper-dark shadow-sm;
+    }
+    .form-input {
+        @apply mt-1 
+            block 
+            w-full 
+            bg-slate-800 
+            rounded-md 
+            border-copper-dark 
+            shadow-sm 
+            focus:border-copper 
+            focus:ring 
+            focus:ring-copper-light 
+            focus:ring-opacity-50;
     }
 }
