@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { supabase } from '@/utils/supabase'
 import type { User, Session } from '@supabase/supabase-js'
-import type { Profile } from '@/utils/types/profile'
+import type { Profile } from '@/utils/types'
 import { useAlerts } from '@/stores/alertsStore'
 import { useRouter } from 'vue-router'
 

@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { userSessionStore } from '@/stores/userSessionStore'
+import { userGuestStore } from '@/stores/userGuestStore'
 import AppAlerts from '@/components/AppAlerts.vue'
 
 const userSession = userSessionStore()
+const userGuest = userGuestStore()
+userGuest.getGuests()
 userSession.sessionInit()
 </script>
 
