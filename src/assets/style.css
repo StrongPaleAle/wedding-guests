@@ -9,23 +9,69 @@
         @apply antialiased  to-teal-950 via-cyan-950 from-blue-950;
         background-image: radial-gradient(circle at 50% 100%, var(--tw-gradient-stops));
     }
+    .input {
+        @apply bg-slate-900
+            bg-opacity-45
+            border-copper-700 
+            shadow-sm 
+            focus:border-copper 
+            focus:ring 
+            focus:ring-copper-400 
+            focus:ring-opacity-50
+            hover:bg-opacity-70
+            transition-all
+            duration-700;
+    }
+    .text-shadow {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
 }
 
 @layer components {
     .btn {
-        @apply inline-block py-2 px-6 rounded bg-copper text-white hover:bg-copper-dark focus:bg-copper-dark shadow-sm;
+        @apply isolate font-serif inline-block py-2 px-6 rounded-xl text-xl bg-copper border-copper-700 border-2 text-white text-shadow focus:bg-copper-700 shadow-xl relative;
+        /* background-image: linear-gradient(45deg, var(--tw-gradient-stops)); */
+        &:before {
+            @apply absolute inset-0 bg-copper-700 opacity-50 transition-all duration-700 rounded-xl scale-x-0 -z-10;
+            content: '';
+        }
+        &:hover:before {
+            @apply scale-x-100;
+        }
     }
     .form-input {
         @apply mt-1 
             block 
             w-full 
-            bg-slate-800 
-            rounded-md 
-            border-copper-dark 
-            shadow-sm 
-            focus:border-copper 
-            focus:ring 
-            focus:ring-copper-light 
-            focus:ring-opacity-50;
+            rounded-lg
+            input;
+    }
+    .form-checkbox,
+    .form-radio {
+        @apply text-copper
+            focus:ring-offset-copper-700
+            focus:ring-offset-2
+            input
+            w-6
+            h-6;
+    }
+    .form-checkbox {
+        @apply rounded-md;
+    }
+    .form-label {
+        @apply block text-copper-400 font-semibold text-lg mb-2;
+    }
+    .input-group {
+        @apply flex items-center gap-1.5;
+
+        &.single-input {
+            @apply flex-col-reverse gap-0;
+            .input-group__label {
+                @apply form-label;
+            }
+            .form-checkbox {
+                @apply w-10 h-10;
+            }
+        }
     }
 }

@@ -8,9 +8,20 @@ export const guestsMetaStore = defineStore({
         guestTypes: [] as SupabaseGuestType[],
         restrictions: [] as SupabaseRestriction[]
     }),
+    getters: {
+        guestTypeByID: (state) => (id: number) => {
+            return state.guestTypes.find((guestType) => guestType.id === id)
+        },
+        restrictionByID: (state) => (id: number) => {
+            return state.restrictions.find((restriction) => restriction.id === id)
+        },
+        restrictionsByID: (state) => (ids: number[]) => {
+            return state.restrictions.filter((restriction) => ids.includes(restriction.id))
+        }
+    },
     actions: {
         async getGuestTypes() {
-            const { data, error } = await supabase.from('guest_type').select()
+            const { data, error } = await supabase.from('guest_type').select('id, name, label')
 
             if (error) {
                 throw error
@@ -19,31 +30,33 @@ export const guestsMetaStore = defineStore({
             this.guestTypes = data
         },
         async getRestrictions() {
-            const { data, error } = await supabase.from('food_restrictions').select()
+            const { data, error } = await supabase
+                .from('food_restrictions')
+                .select('id, name, label, public')
 
             if (error) {
                 throw error
             }
-            console.log(data)
+            // console.log(data)
             this.restrictions = data
         },
-        async createGuestType(guestType: SupabaseGuestType) {
-            const { data, error } = await supabase.from('guest_type').insert(guestType)
+        async createRestriction(restriction: string) {
+            const regex = /[^a-zA-Z0-9]/g
+            const restrictionObj = {
+                name: restriction.toLowerCase().replace(regex, '_'),
+                label: { en: restriction, it: restriction },
+                public: false
+            }
+            const { data, error } = await supabase
+                .from('food_restrictions')
+                .insert(restrictionObj)
+                .select('id, name, label, public')
 
             if (error) {
                 throw error
             }
 
-            return data
-        },
-        async createRestriction(restriction: SupabaseRestriction) {
-            const { data, error } = await supabase.from('food_restrictions').insert(restriction)
-
-            if (error) {
-                throw error
-            }
-
-            return data
+            this.restrictions.push(data[0])
         },
         getGuestsMeta() {
             this.getGuestTypes()

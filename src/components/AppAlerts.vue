@@ -35,6 +35,25 @@ const { items } = storeToRefs(store)
 <style scoped>
 .notifications {
     @apply fixed z-50 flex flex-col-reverse items-end justify-end right-3 bottom-3;
+
+    .notifications__item {
+        @apply p-4 rounded-lg shadow-lg mb-2 bg-opacity-50;
+        &.success {
+            @apply bg-green-500 bg-opacity-50 text-green-200 border-green-500;
+        }
+        &.error {
+            @apply bg-red-500  text-red-200 border-red-500;
+        }
+        &.warning {
+            @apply bg-yellow-500 text-yellow-200 border-yellow-500;
+        }
+        &.info {
+            @apply bg-blue-500 text-blue-200 border-blue-500;
+        }
+        &.none {
+            @apply bg-gray-500 text-gray-200 border-gray-500;
+        }
+    }
 }
 </style>
 @/stores/alertsStore

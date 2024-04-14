@@ -6,7 +6,6 @@ import AppAlerts from '@/components/AppAlerts.vue'
 
 const userSession = userSessionStore()
 const userGuest = userGuestStore()
-userGuest.getGuests()
 userSession.sessionInit()
 </script>
 
