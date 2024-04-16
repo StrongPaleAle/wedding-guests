@@ -28,8 +28,8 @@ const emit = defineEmits({
     click: null,
 
     // Validate submit event
-    submit: (form) => {
-        if (form.name && form.guest_type_id) {
+    submit: ({ form }) => {
+        if (form.name && form.guest_type) {
             return true
         } else {
             console.log(form)

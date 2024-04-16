@@ -10,7 +10,13 @@ export const profileMessages = {
         foodRestrictions: 'Food restrictions',
         customRestriction: 'Add a new restriction',
         customRestrictionPlaceholder: 'Restriction name',
-        addCustomRestriction: 'Add restriction'
+        addCustomRestriction: 'Add restriction',
+        addGuestSuccess: 'Guest added successfully',
+        attending: 'Attending',
+        notAttending: 'Not attending',
+        restrictionAdded: 'Restriction added successfully',
+        deleteGuest: 'Delete Guest',
+        guestDeleteSuccess: 'Guest deleted successfully'
     },
     it: {
         ...defaultMessages.it,
@@ -22,6 +28,12 @@ export const profileMessages = {
         foodRestrictions: 'Restrizioni alimentari',
         customRestriction: 'Aggiungi una nuova restrizione',
         customRestrictionPlaceholder: 'Nome restrizione',
-        addCustomRestriction: 'Aggiungi restrizione'
+        addCustomRestriction: 'Aggiungi restrizione',
+        addGuestSuccess: 'Ospite aggiunto con successo',
+        attending: 'Presente',
+        notAttending: 'Assente',
+        restrictionAdded: 'Restrizione aggiunta con successo',
+        deleteGuest: 'Elimina Ospite',
+        guestDeleteSuccess: 'Ospite eliminato con successo'
     }
 }

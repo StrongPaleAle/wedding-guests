@@ -35,9 +35,7 @@ export const userGuestStore = defineStore({
 
             console.log(data)
             this.supabaseGuests = data as SupabaseGuest[]
-            for (const guest of this.supabaseGuests) {
-                await this.setStoreGuest(guest)
-            }
+            await this.setStoreGuests(data as SupabaseGuest[])
             this.loadingGuests = false
         },
         async getGuestByID(id: number) {
@@ -64,14 +62,18 @@ export const userGuestStore = defineStore({
 
             return data
         },
-        async setStoreGuest(guest: SupabaseGuest, restrictionIds?: number[]) {
+        async setStoreGuest(
+            guest: SupabaseGuest,
+            restrictionIds?: number[],
+            hasRestrictions = true
+        ) {
             const guestData = {
                 ...guest,
                 restriction_ids: restrictionIds || ([] as number[]),
                 guest_type_obj: {} as SupabaseGuestType,
                 restrictions: [] as SupabaseRestriction[]
             }
-            if (!restrictionIds) {
+            if (!restrictionIds && hasRestrictions) {
                 const guestRestrictions = await this.getGuestRestrictions(guest.id)
 
                 if (guestRestrictions) {
@@ -82,7 +84,7 @@ export const userGuestStore = defineStore({
                 }
             }
 
-            if (guestData.restriction_ids.length) {
+            if (guestData.restriction_ids.length > 0) {
                 const restrictions = guestsMetaStore().restrictionsByID(guestData.restriction_ids)
                 guestData.restrictions = restrictions
             }
@@ -97,6 +99,27 @@ export const userGuestStore = defineStore({
                 Object.assign(existingGuest, guestData)
             } else {
                 this.guests.push(guestData)
+            }
+        },
+        async setStoreGuests(guests: SupabaseGuest[]) {
+            const guestsIds = guests.map((guest) => guest.id)
+            if (guestsIds.length) {
+                const { data, error } = await supabase
+                    .from('guest_restriction')
+                    .select()
+                    .in('guest_id', guestsIds)
+                if (error) {
+                    throw error
+                }
+                for (const guest of guests) {
+                    const restrictionIds = data
+                        .filter((restriction) => restriction.guest_id === guest.id)
+                        .map((restriction) => restriction.restriction_id)
+
+                    const hasRestrictions = restrictionIds.length > 0
+
+                    await this.setStoreGuest(guest, restrictionIds, hasRestrictions)
+                }
             }
         },
         async createGuest(guest: GuestData) {
@@ -119,8 +142,8 @@ export const userGuestStore = defineStore({
                 for (const restriction_id of guest.restriction_ids) {
                     await this.createGuestRestriction(guest_id, restriction_id)
                 }
-                this.setStoreGuest(guestRes[0], guest.restriction_ids)
             }
+            this.setStoreGuest(guestRes[0], guest.restriction_ids)
         },
         async updateGuest(guest: GuestData, guestId: number) {
             const guestData: GuestBase = {
@@ -166,6 +189,9 @@ export const userGuestStore = defineStore({
             if (error) {
                 throw error
             }
+
+            this.guests = this.guests.filter((guest) => guest.id !== id)
+            this.supabaseGuests = this.supabaseGuests.filter((guest) => guest.id !== id)
         },
         async createGuestRestriction(guest_id: number, restriction_id: number) {
             const { data, error } = await supabase
