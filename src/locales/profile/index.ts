@@ -16,6 +16,9 @@ export const profileMessages = {
         notAttending: 'Not attending',
         restrictionAdded: 'Restriction added successfully',
         deleteGuest: 'Delete Guest',
+        editGuest: 'Edit Guest',
+        confirmDelete: 'Are you sure you want to delete',
+        guestUpdateSuccess: 'Guest updated successfully',
         guestDeleteSuccess: 'Guest deleted successfully'
     },
     it: {
@@ -33,7 +36,10 @@ export const profileMessages = {
         attending: 'Presente',
         notAttending: 'Assente',
         restrictionAdded: 'Restrizione aggiunta con successo',
+        confirmDelete: 'Sei sicuro di voler eliminare',
         deleteGuest: 'Elimina Ospite',
+        editGuest: 'Modifica Ospite',
+        guestUpdateSuccess: 'Ospite aggiornato con successo',
         guestDeleteSuccess: 'Ospite eliminato con successo'
     }
 }

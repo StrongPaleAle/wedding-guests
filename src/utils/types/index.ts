@@ -35,3 +35,7 @@ export interface StoreGuest extends SupabaseGuest {
     guest_type_obj: Option
     restrictions: SupabaseRestriction[]
 }
+export interface GuestForm {
+    guest_id?: number
+    guest: GuestData
+}

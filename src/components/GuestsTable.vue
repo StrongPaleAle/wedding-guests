@@ -53,11 +53,11 @@ defineEmits(['edit', 'delete'])
                     >
                 </td>
                 <td class="border px-4 py-2">
-                    <button @click="$emit('edit', guest.id)">
+                    <button @click="$emit('edit', guest)">
                         <FontAwesomeIcon :icon="faEdit" />
                         {{ t('edit') }}
                     </button>
-                    <button @click="$emit('delete', guest.id)">
+                    <button @click="$emit('delete', guest)">
                         <FontAwesomeIcon :icon="faTrash" />
                         {{ t('delete') }}
                     </button>

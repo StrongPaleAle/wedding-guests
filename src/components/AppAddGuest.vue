@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { GuestData, SupabaseGuestType, SupabaseRestriction } from '@/utils/types'
+import type { GuestForm, StoreGuest, SupabaseGuestType, SupabaseRestriction } from '@/utils/types'
 import AppCheckbox from './AppCheckbox.vue'
 import AppRadio from './AppRadio.vue'
 import AppOptionGroup from './AppOptionGroup.vue'
 import { profileMessages } from '@/locales/profile/index'
 
 const { t } = useI18n({ messages: profileMessages })
-defineProps<{
+const props = defineProps<{
     guestTypes: SupabaseGuestType[]
     restrictions: SupabaseRestriction[]
+    guest: StoreGuest | null
 }>()
 
-const form = ref<GuestData>({
-    name: '',
-    user_id: '',
-    attendance: true,
-    guest_type: 1,
-    restriction_ids: []
+const form = ref<GuestForm>({
+    guest_id: props.guest?.id || undefined,
+    guest: {
+        name: props.guest?.name || '',
+        user_id: props.guest?.user_id || '',
+        attendance: props.guest?.attendance || true,
+        guest_type: props.guest?.guest_type || 1,
+        restriction_ids: props.guest?.restriction_ids || []
+    }
 })
 
 const restrictionInput = ref('')
@@ -29,7 +33,7 @@ const emit = defineEmits({
 
     // Validate submit event
     submit: ({ form }) => {
-        if (form.name && form.guest_type) {
+        if (form.guest.name && form.guest.guest_type) {
             return true
         } else {
             console.log(form)
@@ -50,17 +54,21 @@ function addRestriction(restriction: string) {
     emit('addRestriction', restriction)
     restrictionInput.value = ''
 }
+const formAction = computed(() => {
+    return props.guest ? t('editGuest') : t('addGuest')
+})
+
 const showAddRestrictions = ref(false)
 </script>
 <template>
     <form class="max-w-max grid gap-4" @submit.prevent="emit('submit', { form })">
-        <h2 class="text-2xl font-serif">{{ t('addGuest') }}</h2>
+        <h2 class="text-2xl font-serif">{{ formAction }}</h2>
         <div class="flex gap-4">
             <div class="flex-grow">
                 <label class="form-label" for="name">{{ t('fullName') }}</label>
                 <input
                     class="form-input"
-                    v-model="form.name"
+                    v-model="form.guest.name"
                     type="text"
                     id="name"
                     :placeholder="t('guestNamePlaceholder')"
@@ -69,11 +77,11 @@ const showAddRestrictions = ref(false)
             <div>
                 <AppCheckbox
                     class="single-input"
-                    :modelValue="form.attendance"
+                    :modelValue="form.guest.attendance"
                     name="attendance"
                     @update:modelValue="
                         (value) => {
-                            form.attendance = value
+                            form.guest.attendance = value
                         }
                     "
                 >
@@ -89,10 +97,10 @@ const showAddRestrictions = ref(false)
                 <AppRadio
                     v-for="guestType in guestTypes"
                     :key="guestType.id"
-                    :modelValue="form.guest_type ? form.guest_type : 1"
+                    :modelValue="form.guest.guest_type ? form.guest.guest_type : 1"
                     :option="guestType"
                     name="guest_type"
-                    @update:modelValue="(value) => (form.guest_type = value)"
+                    @update:modelValue="(value) => (form.guest.guest_type = value)"
                 />
             </AppOptionGroup>
         </div>
@@ -104,14 +112,14 @@ const showAddRestrictions = ref(false)
                 <AppCheckbox
                     v-for="restriction in restrictions"
                     :key="restriction.id"
-                    :modelValue="form.restriction_ids?.includes(restriction.id)"
+                    :modelValue="form.guest.restriction_ids?.includes(restriction.id)"
                     :name="restriction.name"
                     @update:modelValue="
                         (value) => {
                             if (value) {
-                                form.restriction_ids?.push(restriction.id)
+                                form.guest.restriction_ids?.push(restriction.id)
                             } else {
-                                form.restriction_ids = form.restriction_ids?.filter(
+                                form.guest.restriction_ids = form.guest.restriction_ids?.filter(
                                     (id) => id !== restriction.id
                                 )
                             }
@@ -170,6 +178,6 @@ const showAddRestrictions = ref(false)
             </div>
         </div>
 
-        <button type="submit" class="btn">{{ t('addGuest') }}</button>
+        <button type="submit" class="btn">{{ formAction }}</button>
     </form>
 </template>

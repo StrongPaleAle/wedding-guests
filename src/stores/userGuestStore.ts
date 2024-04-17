@@ -28,6 +28,7 @@ export const userGuestStore = defineStore({
                 .from('guests')
                 .select('id, name, user_id, guest_type, attendance')
                 .eq('user_id', userSession.user.id)
+                .order('id', { ascending: true })
 
             if (error) {
                 throw error

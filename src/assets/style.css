@@ -38,6 +38,18 @@
         &:hover:before {
             @apply scale-x-100;
         }
+        &:focus {
+            @apply ring-2 ring-copper-700;
+        }
+        &.btn--secondary {
+            @apply bg-teal-700 border-teal-800 focus:bg-teal-800;
+            &:before {
+                @apply bg-teal-800;
+            }
+            &:focus {
+                @apply ring-teal-800;
+            }
+        }
     }
     .form-input {
         @apply mt-1 
