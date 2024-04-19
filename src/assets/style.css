@@ -25,24 +25,27 @@
     .text-shadow {
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     }
+    .text-glow {
+        text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.4);
+    }
 }
 
 @layer components {
     .btn {
-        @apply isolate font-serif inline-block py-2 px-6 rounded-xl text-xl bg-copper border-copper-700 border-2 text-white text-shadow focus:bg-copper-700 shadow-xl relative;
+        @apply isolate font-serif inline-block py-2 px-6 rounded-xl text-2xl bg-copper border-copper-700 border-2 text-copper-900 text-glow focus:bg-copper-700 shadow-xl relative;
         /* background-image: linear-gradient(45deg, var(--tw-gradient-stops)); */
         &:before {
-            @apply absolute inset-0 bg-copper-700 opacity-50 transition-all duration-700 rounded-xl scale-x-0 -z-10;
+            @apply absolute inset-0 bg-copper-700 opacity-0 transition-all duration-700 rounded-xl scale-x-0 -z-10;
             content: '';
         }
         &:hover:before {
-            @apply scale-x-100;
+            @apply scale-x-100 opacity-50;
         }
         &:focus {
             @apply ring-2 ring-copper-700;
         }
         &.btn--secondary {
-            @apply bg-teal-700 border-teal-800 focus:bg-teal-800;
+            @apply bg-teal-700 border-teal-800 focus:bg-teal-800 text-white;
             &:before {
                 @apply bg-teal-800;
             }
@@ -85,5 +88,8 @@
                 @apply w-10 h-10;
             }
         }
+    }
+    .card {
+        @apply overflow-hidden rounded-lg shadow-lg bg-black bg-opacity-10 backdrop-blur-sm;
     }
 }

@@ -7,9 +7,10 @@ import { guestsMetaStore } from '@/stores/guestsMetaStore'
 import { useAlerts } from '@/stores/alertsStore'
 import type { StoreGuest, GuestForm, GuestData } from '@/utils/types'
 import AppAddGuest from '@/components/AppAddGuest.vue'
-import GuestsTable from '@/components/GuestsTable.vue'
 import { profileMessages } from '@/locales/profile/index'
 import AppDialog from '@/components/AppDialog.vue'
+
+import GuestsList from '@/components/Guests/GuestsList.vue'
 
 const { t } = useI18n({ messages: profileMessages })
 const alerts = useAlerts()
@@ -87,13 +88,14 @@ function editDialog(guest: StoreGuest) {
 }
 </script>
 <template>
-    <div class="max-w-[90rem] mx-auto">
+    <div class="view-wrapper max-w-[90rem] mx-auto" v-show="!userGuest.loadingGuests">
         <h1 class="text-5xl font-serif mb-8">{{ t('welcome') }} {{ username }}</h1>
 
         <!-- {{ userSession.session }}
         {{ userSession.user }} -->
 
-        <GuestsTable
+        <GuestsList
+            v-if="userGuest.guests.length > 0"
             :guests="userGuest.guests"
             @delete="deleteDialog($event)"
             @edit="editDialog($event)"
@@ -101,7 +103,10 @@ function editDialog(guest: StoreGuest) {
         <!-- {{ userGuest.supabaseGuests }} -->
         <!-- <input class="form-input" type="text" v-model="username" />
         <button class="btn" @click="userSession.updateUsername(username)">Update</button> -->
-        <button class="btn" @click="showForm = true">{{ t('addGuest') }}</button>
+        <div class="p-8 text-center">
+            <button class="btn" @click="showForm = true">{{ t('addGuest') }}</button>
+        </div>
+
         <Teleport to="#app">
             <AppDialog :show="showForm" @close="showForm = false">
                 <AppAddGuest
@@ -132,3 +137,8 @@ function editDialog(guest: StoreGuest) {
         </Teleport>
     </div>
 </template>
+<style lang="postcss">
+.view-wrapper {
+    @apply animate-fade-in;
+}
+</style>

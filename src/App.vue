@@ -10,7 +10,7 @@ userSession.sessionInit()
 </script>
 
 <template>
-    <div class="flex justify-center items-center min-h-svh p-10">
+    <div class="flex justify-center items-center min-h-svh p-4 md:p-10">
         <RouterView />
     </div>
     <AppAlerts />
