@@ -2,9 +2,8 @@
 import { useAlerts } from '@/stores/alertsStore'
 
 import { storeToRefs } from 'pinia'
-import { reactive } from 'vue'
+
 const store = useAlerts()
-const { notify, remove } = store
 
 const { items } = storeToRefs(store)
 </script>

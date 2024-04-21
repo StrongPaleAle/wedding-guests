@@ -7,7 +7,7 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import GuestListItem from './GuestListItem.vue'
 
 const { t } = useI18n({ messages: profileMessages })
-const props = defineProps<{
+defineProps<{
     guests: StoreGuest[]
 }>()
 defineEmits(['edit', 'delete'])

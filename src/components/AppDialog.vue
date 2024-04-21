@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
-const props = defineProps({
+defineProps({
     show: Boolean
 })
 const { t } = useI18n()

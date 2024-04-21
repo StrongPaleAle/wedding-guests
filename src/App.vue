@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { userSessionStore } from '@/stores/userSessionStore'
-import { userGuestStore } from '@/stores/userGuestStore'
+
 import AppAlerts from '@/components/AppAlerts.vue'
 import TheNav from '@/components/TheNav.vue'
 

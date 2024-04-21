@@ -81,9 +81,9 @@ router.beforeEach(async (to, from, next) => {
     }
     if (history.state) {
         const message = history.state.message as string
-        console.log(message, history.state.alert_type, history.state)
+        //console.log(message, history.state.alert_type, history.state)
 
-        console.log(message, history.state.alert_type)
+        //console.log(message, history.state.alert_type)
         const alerts = useAlerts()
         const alertMessage = i18n.global.t(message) as string
         const alertStyle = isAlertStyle(history.state.alert_type)

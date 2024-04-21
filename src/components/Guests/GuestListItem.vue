@@ -3,8 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { profileMessages } from '@/locales/profile'
 import type { StoreGuest } from '@/utils/types'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+
 import GuestAttendance from './GuestAttendance.vue'
 
 const { t, locale } = useI18n({ messages: profileMessages })

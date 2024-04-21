@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { userSessionStore } from '@/stores/userSessionStore'
 import { useI18n } from 'vue-i18n'
 import HomeHero from '@/components/Home/HomeHero.vue'
 import HomeContentEn from '@/components/Home/HomeContentEn.vue'
 import HomeContentIt from '@/components/Home/HomeContentIt.vue'
 
 const { locale } = useI18n()
-const userSession = userSessionStore()
 </script>
 
 <template>
