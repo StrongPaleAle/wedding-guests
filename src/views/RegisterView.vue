@@ -22,8 +22,8 @@ const register = async (email: string, password: string, username: string) => {
 }
 </script>
 <template>
-    <div class="sm:min-w-96">
-        <h1 class="text-2xl mb-8 font-serif">{{ t('signUp') }}</h1>
+    <div class="min-w-80 sm:min-w-96 card p-4 md:p-8">
+        <h1 class="text-2xl mb-6 font-serif">{{ t('signUp') }}</h1>
 
         <AppRegisterForm
             id="register"

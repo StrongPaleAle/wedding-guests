@@ -65,7 +65,7 @@ const showAddRestrictions = ref(false)
 <template>
     <form class="max-w-max grid gap-4" @submit.prevent="emit('submit', { form })">
         <h2 class="text-2xl font-serif">{{ formAction }}</h2>
-        <div class="flex gap-4">
+        <div class="flex flex-col sm:flex-row gap-4">
             <div class="flex-grow">
                 <label class="form-label" for="name">{{ t('fullName') }}</label>
                 <input
@@ -92,7 +92,7 @@ const showAddRestrictions = ref(false)
             </div>
         </div>
         <div>
-            <AppOptionGroup name="guest_type" hideLabel>
+            <AppOptionGroup name="guest_type" class="options-group__center" hideLabel>
                 <template #label>
                     {{ t('guestType') }}
                 </template>

@@ -9,13 +9,13 @@ const order = Math.random() > 0.5
 </script>
 <template>
     <AppStarDivider class="mb-2 md:mb-4" />
-    <h1 class="font-serif text-7xl">
+    <h1 class="font-serif text-7xl animate-fade-in-slow">
         <span :class="[order ? 'alessio' : 'erika']">{{ order ? 'Alessio' : 'Erika' }}</span>
         <small>&</small>
         <span :class="[!order ? 'alessio' : 'erika']">{{ !order ? 'Alessio' : 'Erika' }}</span>
     </h1>
     <p
-        class="font-serif text-center text-shadow text-copper-200 text-2xl sm:text-3xl md:text-4xl"
+        class="font-serif text-center text-shadow text-copper-200 text-2xl sm:text-3xl md:text-4xl animate-fade-in-slow"
         v-html="t('theDate')"
     ></p>
     <AppStarDivider class="mt-4 md:mt-6" />

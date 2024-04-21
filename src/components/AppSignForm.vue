@@ -47,7 +47,9 @@ function submitForm(email: string, password: string) {
                 type="password"
                 placeholder="Password"
             />
-            <button class="btn">{{ action }}</button>
+            <div class="text-center">
+                <button class="btn">{{ action }}</button>
+            </div>
         </form>
     </div>
 </template>

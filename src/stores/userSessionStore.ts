@@ -39,9 +39,11 @@ export const userSessionStore = defineStore({
             if (error) {
                 throw error
             }
+            const router = useRouter()
             this.user = null
             this.session = null
             this.userProfile = null
+            router.push('/')
         },
         async signUp(email: string, password: string, username: string) {
             const { data, error } = await supabase.auth.signUp({

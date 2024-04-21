@@ -3,7 +3,6 @@ import { useAlerts } from '@/stores/alertsStore'
 
 import { storeToRefs } from 'pinia'
 import { reactive } from 'vue'
-
 const store = useAlerts()
 const { notify, remove } = store
 
@@ -34,10 +33,10 @@ const { items } = storeToRefs(store)
 </template>
 <style scoped>
 .notifications {
-    @apply fixed z-50 flex flex-col-reverse items-end justify-end right-3 bottom-3;
+    @apply fixed z-50 flex flex-col-reverse items-end justify-end top-0 right-0 md:right-3 md:top-auto md:bottom-3 w-full md:max-w-lg;
 
     .notifications__item {
-        @apply p-4 rounded-lg shadow-lg mb-2 bg-opacity-50;
+        @apply p-2 rounded-lg shadow-lg mb-2 bg-opacity-50 sm:text-lg border-2 text-center;
         &.success {
             @apply bg-green-500 bg-opacity-50 text-green-200 border-green-500;
         }

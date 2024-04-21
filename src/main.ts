@@ -16,7 +16,7 @@ const supportedLocales = ['en', 'it']
 
 const locale = supportedLocales.includes(browserLocale) ? browserLocale : 'en'
 
-const il8n = createI18n({
+export const i18n = createI18n({
     legacy: false,
     locale: locale,
     messages: defaultMessages
@@ -25,8 +25,8 @@ const il8n = createI18n({
 const app = createApp(App)
 
 app.use(createPinia().use(piniaPluginPersistedstate))
+app.use(i18n)
 app.use(router)
-app.use(il8n)
 
 app.component('IconStar', IconStar)
 

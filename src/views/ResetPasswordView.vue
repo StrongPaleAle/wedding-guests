@@ -15,12 +15,12 @@ const password = ref('')
 // triggers sending the reset email to the user
 const handlePasswordReset = async () => {
     await userSession.resetPassword(password.value)
-    router.push({ name: 'profile', params: { alert: 'noPermission', 'alert-type': 'error' } })
+    router.push({ name: 'RSVP', params: { alert: 'noPermission', 'alert-type': 'error' } })
 }
 </script>
 <template>
-    <div>
-        <h1 class="text-3xl mb-5">Insert your new password</h1>
+    <div class="min-w-80 sm:min-w-96 card p-4 md:p-8">
+        <h1 class="text-3xl mb-6 font-serif">Insert your new password</h1>
         <form class="max-w-lg m-auto" @submit.prevent="handlePasswordReset()">
             <label
                 ><span class="block">Password</span>

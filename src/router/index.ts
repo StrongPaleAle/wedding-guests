@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ResetPasswordView from '../views/ResetPasswordView.vue'
+import ResetPasswordView from '@/views/ResetPasswordView.vue'
 import ForgotPasswordView from '@/views/ForgotPasswordView.vue'
 import { userSessionStore } from '@/stores/userSessionStore'
 import { useAlerts } from '@/stores/alertsStore'
 import type { AlertStyle } from '@/stores/alertsStore'
 import { isAlertStyle } from '@/stores/alertsStore'
+import { i18n } from '@/main'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,9 +30,9 @@ const router = createRouter({
             component: () => import('../views/LoginView.vue')
         },
         {
-            path: '/profile',
-            name: 'profile',
-            component: () => import('../views/ProfileView.vue'),
+            path: '/rsvp',
+            name: 'RSVP',
+            component: () => import('../views/RSVPView.vue'),
             meta: {
                 needsAuth: 0
             }
@@ -72,18 +73,25 @@ router.beforeEach(async (to, from, next) => {
     if (typeof to.meta.needsAuth !== 'number' || canAccess) {
         next()
     } else if (userSession.user?.id) {
-        next({ name: 'home', params: { alert: 'noPermission', 'alert-type': 'error' } })
+        history.pushState({ message: 'noPermission', alert_type: 'error' }, '')
+        next({ name: 'home' })
     } else {
-        next({ name: 'login', params: { alert: 'loginNeeded', 'alert-type': 'error' } })
+        history.pushState({ message: 'loginNeeded', alert_type: 'error' }, '')
+        next({ name: 'login' })
     }
-    if (to.params.alert) {
-        const alert = to.params.alert
+    if (history.state) {
+        const message = history.state.message as string
+        console.log(message, history.state.alert_type, history.state)
 
-        const alertType = isAlertStyle(to.params['alert-type'] as string)
-            ? to.params['alert-type']
-            : 'info'
+        console.log(message, history.state.alert_type)
         const alerts = useAlerts()
-        alerts.notify(alert as string, alertType as AlertStyle)
+        const alertMessage = i18n.global.t(message) as string
+        const alertStyle = isAlertStyle(history.state.alert_type)
+            ? history.state.alert_type
+            : 'info'
+
+        alerts.notify(alertMessage, alertStyle as AlertStyle)
+        history.replaceState(null, '')
     }
 })
 

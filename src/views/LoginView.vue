@@ -14,28 +14,30 @@ const alerts = useAlerts()
 const login = async (email: string, password: string) => {
     try {
         await userSession.signIn(email, password)
-        router.push({ name: 'profile' })
+        router.push({ name: 'RSVP' })
     } catch (error: any) {
         alerts.error(error.message)
     }
 }
 onMounted(() => {
     if (userSession.user) {
-        router.push({ name: 'profile' })
+        router.push({ name: 'RSVP' })
     }
 })
 </script>
 <template>
-    <div>
-        <h1 class="text-2xl mb-8 font-serif">{{ t('signIn') }}</h1>
+    <div class="min-w-80 sm:min-w-96 card p-4 md:p-8">
+        <h1 class="text-2xl mb-6 font-serif">{{ t('signIn') }}</h1>
 
         <AppSignForm
             id="login"
             :action="t('signIn')"
             @submit="login($event.email, $event.password)"
         />
-        <RouterLink to="/forgot-password" class="hover:underline">
-            {{ t('forgotPassword') }}
-        </RouterLink>
+        <div class="text-center mt-2">
+            <RouterLink to="/forgot-password" class="hover:underline">
+                {{ t('forgotPassword') }}
+            </RouterLink>
+        </div>
     </div>
 </template>

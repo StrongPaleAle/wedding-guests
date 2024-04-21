@@ -16,9 +16,9 @@ const userSession = userSessionStore()
             <div>
                 <div v-if="userSession.user" class="nav-actions">
                     <RouterLink
-                        v-if="$route.name !== 'profile'"
+                        v-if="$route.name !== 'RSVP'"
                         class="btn btn--small btn--secondary"
-                        to="/profile"
+                        to="/rsvp"
                         >{{ t('profile') }}</RouterLink
                     >
                     <button
@@ -30,10 +30,10 @@ const userSession = userSessionStore()
                     </button>
                 </div>
                 <div v-else class="nav-actions">
-                    <RouterLink class="btn btn--secondary" to="/register">{{
+                    <RouterLink class="btn btn--small btn--secondary" to="/register">{{
                         t('signUp')
                     }}</RouterLink>
-                    <RouterLink class="btn" to="/login">{{ t('signIn') }}</RouterLink>
+                    <RouterLink class="btn btn--small" to="/login">{{ t('signIn') }}</RouterLink>
                 </div>
             </div>
         </nav>
@@ -41,7 +41,7 @@ const userSession = userSessionStore()
 </template>
 <style lang="postcss">
 .main-header {
-    @apply fixed isolate bottom-0 md:top-0 md:bottom-auto left-0 w-full text-white z-50;
+    @apply fixed isolate bottom-0 md:top-0 md:bottom-auto left-0 w-full text-white z-50 animate-fade-in-up;
     &:after {
         @apply absolute inset-0 -top-8 bg-gradient-to-t md:bg-gradient-to-b from-cyan-950  bg-opacity-40 backdrop-blur;
         content: '';

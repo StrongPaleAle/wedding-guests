@@ -19,7 +19,12 @@ defineProps<{
 <style lang="postcss">
 .options-group {
     &_items {
-        @apply flex gap-4 flex-wrap;
+        @apply flex gap-3 sm:gap-4 flex-wrap;
+    }
+    &__center {
+        .options-group_items {
+            @apply flex justify-center;
+        }
     }
 }
 </style>

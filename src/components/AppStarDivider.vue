@@ -5,7 +5,7 @@
 </template>
 <style lang="postcss">
 .star-divider {
-    @apply flex items-center justify-center gap-3 drop-shadow;
+    @apply flex items-center justify-center gap-3 drop-shadow animate-fade-in;
     &::before,
     &::after {
         @apply flex-grow h-1 bg-copper;

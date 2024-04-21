@@ -21,7 +21,7 @@ export const profileMessages = {
         guestUpdateSuccess: 'Guest updated successfully',
         guestDeleteSuccess: 'Guest deleted successfully',
         profileGreetings:
-            "This is your profile, her you can confirm your attendance and for whoever is coming with you. If you have any food restrictions, you can add them here. If you're not attending, you can let us know here too by adding a guest and unchecking the attendance box. If you have any questions, please contact us. Enjoy the party!"
+            "This is your RSVP page, her you can confirm your attendance and for whoever is coming with you. If you have any food restrictions, you can add them here. If you're not attending, you can let us know here too by adding a guest and unchecking the attendance box. If you have any questions, please contact us. Enjoy the party!"
     },
     it: {
         ...defaultMessages.it,
@@ -44,6 +44,6 @@ export const profileMessages = {
         guestUpdateSuccess: 'Ospite aggiornato con successo',
         guestDeleteSuccess: 'Ospite eliminato con successo',
         profileGreetings:
-            "Questo è il tuo profilo, qui puoi confermare la tua presenza e quella dei tuoi ospiti. Se hai restrizioni alimentari, puoi aggiungerle qui. Se non parteciperai all'evento, puoi farcelo sapere qui aggiungendo un ospite e deselezionando la casella di presenza. Se hai domande, contattaci. Buon divertimento!"
+            "Questo è il tua pagina RSVP, qui puoi confermare la tua presenza e quella dei tuoi ospiti. Se hai restrizioni alimentari, puoi aggiungerle qui. Se non parteciperai all'evento, puoi farcelo sapere qui aggiungendo un ospite e deselezionando la casella di presenza. Se hai domande, contattaci. Buon divertimento!"
     }
 }

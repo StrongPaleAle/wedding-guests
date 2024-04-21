@@ -28,6 +28,6 @@ const model = computed({
             :value="option.id"
             :id="`${name}-${option.name}`"
         />
-        <span>{{ option.label[$i18n.locale] }}</span>
+        <span class="input-group__label">{{ option.label[$i18n.locale] }}</span>
     </label>
 </template>

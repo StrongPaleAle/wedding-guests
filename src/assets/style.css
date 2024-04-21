@@ -80,29 +80,36 @@
             focus:ring-offset-copper-700
             focus:ring-offset-2
             input
-            w-6
-            h-6;
+            w-4
+            h-4
+            sm:w-6
+            sm:h-6;
     }
     .form-checkbox {
-        @apply rounded-md;
+        @apply rounded-sm sm:rounded-md;
     }
     .form-label {
-        @apply block text-copper-400 font-semibold text-lg mb-2;
+        @apply block text-copper-300 font-semibold sm:text-lg mb-2;
     }
     .input-group {
-        @apply flex items-center gap-1.5;
-
+        @apply flex items-center gap-1 sm:gap-1.5;
+        &__label {
+            @apply text-sm sm:text-base;
+        }
         &.single-input {
-            @apply flex-col-reverse gap-0;
+            @apply flex-row-reverse justify-center sm:flex-col-reverse gap-2 sm:gap-0;
             .input-group__label {
                 @apply form-label;
             }
             .form-checkbox {
-                @apply w-10 h-10;
+                @apply w-8 h-8 sm:w-10 sm:h-10;
             }
         }
     }
     .card {
         @apply overflow-hidden rounded-lg shadow-lg bg-black bg-opacity-10 backdrop-blur-sm;
+    }
+    .subtitle {
+        @apply font-serif text-copper-100 text-center text-balance;
     }
 }

@@ -19,8 +19,8 @@ const handlePasswordReset = async () => {
 }
 </script>
 <template>
-    <div>
-        <h1 class="text-3xl mb-5">Forgot Password?</h1>
+    <div class="min-w-80 sm:min-w-96 card p-4 md:p-8">
+        <h1 class="text-3xl mb-6 font-serif">Forgot Password?</h1>
         <form class="grid grid-cols-1 gap-6" @submit.prevent="handlePasswordReset()">
             <label
                 ><span class="block">Email </span
