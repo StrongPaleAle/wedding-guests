@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { profileMessages } from '@/locales/profile'
 import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
+const { t } = useI18n({ messages: profileMessages })
 defineProps<{
     attendance: boolean
 }>()

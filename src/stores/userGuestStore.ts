@@ -153,6 +153,7 @@ export const userGuestStore = defineStore({
                 guest_type: guest.guest_type,
                 attendance: guest.attendance
             }
+            //console.log('guest.restriction_ids: ', guest.restriction_ids)
             const { data: guestRes, error } = await supabase
                 .from('guests')
                 .update(guestData)
@@ -162,26 +163,31 @@ export const userGuestStore = defineStore({
             if (error) {
                 throw error
             }
-            const guest_id = guestRes[0].id
+
             const storeGuest = this.guests.find((g) => g.id === guestId)
+            //console.log('storeGuest: ', storeGuest)
             const storeGuestRestrictions = storeGuest?.restriction_ids || []
+            //console.log('storeGuestRestrictions: ', storeGuestRestrictions)
             const restrictionsAdded = guest.restriction_ids.filter(
                 (id) => !storeGuestRestrictions.includes(id)
             )
             const restrictionsRemoved = storeGuestRestrictions.filter(
                 (id) => !guest.restriction_ids.includes(id)
             )
-            if (restrictionsAdded.length) {
+            if (restrictionsAdded.length > 0) {
                 for (const restriction_id of restrictionsAdded) {
-                    await this.createGuestRestriction(guest_id, restriction_id)
+                    //console.log('restriction_id: ', restriction_id)
+                    await this.createGuestRestriction(guestId, restriction_id)
                 }
             }
 
-            if (restrictionsRemoved.length) {
+            if (restrictionsRemoved.length > 0) {
                 for (const restriction_id of restrictionsRemoved) {
-                    await this.deleteGuestRestriction(guest_id, restriction_id)
+                    //console.log('restriction_id: ', restriction_id)
+                    await this.deleteGuestRestriction(guestId, restriction_id)
                 }
             }
+            //console.log(guestRes, restrictionsAdded, restrictionsRemoved)
             this.setStoreGuest(guestRes[0], guest.restriction_ids)
         },
         async deleteGuest(id: number) {

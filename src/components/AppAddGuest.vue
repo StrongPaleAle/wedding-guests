@@ -14,14 +14,16 @@ const props = defineProps<{
     guest: StoreGuest | null
 }>()
 
+const guestClone = props.guest ? JSON.parse(JSON.stringify(props.guest)) : {}
+const attendance: boolean = guestClone.attendance !== undefined ? guestClone.attendance : true
 const form = ref<GuestForm>({
     guest_id: props.guest?.id || undefined,
     guest: {
-        name: props.guest?.name || '',
-        user_id: props.guest?.user_id || '',
-        attendance: props.guest?.attendance || true,
-        guest_type: props.guest?.guest_type || 1,
-        restriction_ids: props.guest?.restriction_ids || []
+        name: guestClone.name || '',
+        user_id: guestClone.user_id || '',
+        attendance: attendance,
+        guest_type: guestClone.guest_type || 1,
+        restriction_ids: guestClone.restriction_ids || []
     }
 })
 

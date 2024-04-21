@@ -1,13 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#164e63" />
+        <meta name="msapplication-TileColor" content="#164e63" />
+        <meta name="theme-color" content="#164e63" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Erika & Alessio</title>
+
+        <link
+            rel="preload"
+            href="/assets/font/Kalnia-VariableFont.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <style>
+            /* latin-ext */
+            @font-face {
+                font-family: 'Kalnia';
+                font-style: normal;
+                font-weight: 100 700;
+                font-stretch: 100%;
+                font-display: swap;
+                src:
+                    url(/assets/font/Kalnia-VariableFont.woff2) format('woff2 supports variations'),
+                    url(/assets/font/Kalnia-VariableFont.woff2) format('woff2-variations');
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>

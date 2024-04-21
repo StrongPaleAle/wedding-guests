@@ -30,9 +30,9 @@ defineEmits(['edit', 'delete'])
 </template>
 <style scoped lang="postcss">
 .actions {
-    @apply flex gap-4 justify-end;
+    @apply flex gap-4 justify-end sm:text-xl;
     button {
-        @apply text-copper-300 inline-flex items-center gap-1;
+        @apply text-copper-200 inline-flex items-center gap-1;
         small {
             @apply sr-only;
         }

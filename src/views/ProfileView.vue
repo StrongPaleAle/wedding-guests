@@ -89,8 +89,10 @@ function editDialog(guest: StoreGuest) {
 </script>
 <template>
     <div class="view-wrapper max-w-[90rem] mx-auto" v-show="!userGuest.loadingGuests">
-        <h1 class="text-5xl font-serif mb-8">{{ t('welcome') }} {{ username }}</h1>
-
+        <h1 class="text-4xl font-serif mb-8">
+            {{ t('welcome') }} <span class="text-copper-200">{{ username }}</span>
+        </h1>
+        <p class="mb-8 max-w-prose">{{ t('profileGreetings') }}</p>
         <!-- {{ userSession.session }}
         {{ userSession.user }} -->
 
@@ -119,7 +121,10 @@ function editDialog(guest: StoreGuest) {
             </AppDialog>
             <AppDialog :show="showConfirm" @close="showConfirm = false">
                 <div class="p-4" v-if="modalGuest && modalGuest.id">
-                    <p class="text-lg mb-8">{{ t('confirmDelete') }} {{ modalGuest.name }}</p>
+                    <p class="text-lg mb-8 text-center">
+                        {{ t('confirmDelete') }}
+                        <span class="text-copper-200">{{ modalGuest.name }}</span>
+                    </p>
                     <div class="flex gap-4">
                         <button
                             class="btn"

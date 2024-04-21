@@ -8,6 +8,8 @@ import { defaultMessages } from './locales/system'
 import App from './App.vue'
 import router from './router'
 
+import IconStar from './components/icons/IconStar.vue'
+
 const browserLocale = navigator.language.split('-')[0]
 
 const supportedLocales = ['en', 'it']
@@ -25,5 +27,7 @@ const app = createApp(App)
 app.use(createPinia().use(piniaPluginPersistedstate))
 app.use(router)
 app.use(il8n)
+
+app.component('IconStar', IconStar)
 
 app.mount('#app')

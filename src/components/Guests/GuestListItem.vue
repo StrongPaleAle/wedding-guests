@@ -17,11 +17,16 @@ const restrictions = computed(() => {
 </script>
 <template>
     <div class="guest-item card">
-        <GuestAttendance :attendance="guest.attendance" />
+        <GuestAttendance :attendance="guest.attendance" class="sm:text-xl" />
         <div>
-            <div class="flex items-center gap-1">
-                <h3 class="font-semibold text-copper-200">{{ guest.name }}</h3>
-                <small>{{ guest.guest_type_obj.label[locale] }}</small>
+            <div class="flex items-center gap-2">
+                <h3 class="font-semibold text-copper-200 sm:text-lg">
+                    {{ guest.name }}
+                </h3>
+                <small class="sm:text-base">{{ guest.guest_type_obj.label[locale] }}</small>
+            </div>
+            <div class="text-xs sm:text-sm text-copper-100 text-ellipsis text-nowrap">
+                {{ restrictions }}
             </div>
         </div>
 
@@ -32,7 +37,7 @@ const restrictions = computed(() => {
 </template>
 <style scoped lang="postcss">
 .guest-item {
-    @apply flex items-center gap-1 px-4 py-2 -mx-4 even:bg-teal-700 even:bg-opacity-20 border-t border-cyan-700;
+    @apply flex items-center gap-2 sm:gap-3 px-4 py-2 sm:py-3 -mx-4 even:bg-teal-700 even:bg-opacity-20 border-t border-cyan-700;
     + .guest-item {
         @apply mb-2;
     }
