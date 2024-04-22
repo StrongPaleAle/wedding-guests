@@ -154,7 +154,7 @@ const showAddRestrictions = ref(false)
             }"
         >
             <div
-                class="transition-opacity delay-200 ease-in-out pb-6 flex items-center"
+                class="transition-opacity delay-200 ease-in-out pb-6 flex max-sm:flex-col max-sm:gap-3 items-center"
                 :class="{
                     'opacity-100': showAddRestrictions,
                     'opacity-0': !showAddRestrictions
@@ -171,7 +171,7 @@ const showAddRestrictions = ref(false)
                     :placeholder="t('customRestrictionPlaceholder')"
                 />
                 <button
-                    class="btn rounded-l-none flex-shrink-0"
+                    class="btn text-base sm:rounded-l-none flex-shrink-0"
                     type="button"
                     @click.prevent="addRestriction(restrictionInput)"
                 >

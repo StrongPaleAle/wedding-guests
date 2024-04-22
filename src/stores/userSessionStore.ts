@@ -3,7 +3,6 @@ import { supabase } from '@/utils/supabase'
 import type { User, Session } from '@supabase/supabase-js'
 import type { Profile } from '@/utils/types'
 import { useAlerts } from '@/stores/alertsStore'
-import { useRouter } from 'vue-router'
 
 export const userSessionStore = defineStore({
     id: 'userSession',
@@ -39,11 +38,10 @@ export const userSessionStore = defineStore({
             if (error) {
                 throw error
             }
-            const router = useRouter()
+
             this.user = null
             this.session = null
             this.userProfile = null
-            router.push('/')
         },
         async signUp(email: string, password: string, username: string) {
             const { data, error } = await supabase.auth.signUp({
@@ -75,6 +73,7 @@ export const userSessionStore = defineStore({
                 if (data) {
                     this.userProfile = data
                 }
+                this.loadingUser = false
             } catch (error: any) {
                 alerts.error(error.message)
             }

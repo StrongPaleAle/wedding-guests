@@ -56,7 +56,7 @@ const { t } = useI18n()
             justify-center
           sm:overflow-visible
           md:p-2
-          pb-14
+          pb-20
           md:pt-12;
     }
     &__body {

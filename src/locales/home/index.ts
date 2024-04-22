@@ -2,7 +2,7 @@ import { defaultMessages } from '../system/index'
 export const homeMessages = {
     en: {
         ...defaultMessages.en,
-        theDate: '18<sup>th</sup> May 2024'
+        theDate: '18th May 2024'
     },
     it: {
         ...defaultMessages.it,

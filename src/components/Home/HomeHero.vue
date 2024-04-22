@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { homeMessages } from '@/locales/home'
 import AppStarDivider from '@/components/AppStarDivider.vue'
 
-const { t } = useI18n({ messages: homeMessages })
+const { locale } = useI18n({ messages: homeMessages })
 
 const order = Math.random() > 0.5
 </script>
@@ -14,10 +14,10 @@ const order = Math.random() > 0.5
         <small>&</small>
         <span :class="[!order ? 'alessio' : 'erika']">{{ !order ? 'Alessio' : 'Erika' }}</span>
     </h1>
-    <p
-        class="font-serif text-center text-shadow text-copper-200 text-2xl sm:text-3xl md:text-4xl animate-fade-in-slow"
-        v-html="t('theDate')"
-    ></p>
+    <p class="font-serif text-center text-shadow text-copper-200 text-2xl sm:text-3xl md:text-4xl">
+        <span class="animate-fade-in-slow" v-if="locale === 'it'"> 18 Maggio 2024 </span>
+        <span class="animate-fade-in-slow" v-else> 18<sup>th</sup> May 2024 </span>
+    </p>
     <AppStarDivider class="mt-4 md:mt-6" />
 </template>
 <style lang="postcss">

@@ -20,7 +20,7 @@ userSession.sessionInit()
 </template>
 <style scoped lang="postcss">
 .page-wrapper {
-    @apply isolate flex justify-center items-center min-h-svh p-4 md:p-10 pb-28 md:pt-28;
+    @apply isolate flex justify-center items-center min-h-svh p-4 md:p-10 pb-28 md:pt-28 max-w-full;
 }
 .page-bg {
     @apply fixed inset-0 isolate;

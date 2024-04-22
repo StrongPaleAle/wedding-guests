@@ -3,37 +3,52 @@ import IconLogo from './icons/IconLogo.vue'
 
 import { userSessionStore } from '@/stores/userSessionStore'
 import { useI18n } from 'vue-i18n'
+import AppLocaleSwitcher from './AppLocaleSwitcher.vue'
+import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
 const userSession = userSessionStore()
+const router = useRouter()
+
+async function signOut() {
+    await userSession.signOut()
+    router.push('/')
+}
 </script>
 <template>
-    <header class="main-header">
+    <header class="main-header max-w-svw">
         <nav>
             <RouterLink to="/" class="inline-block w-16 md:w-20">
                 <IconLogo />
             </RouterLink>
             <div>
-                <div v-if="userSession.user" class="nav-actions">
+                <div class="nav-actions">
+                    <AppLocaleSwitcher class="mr-1 sm:mr-2" />
                     <RouterLink
-                        v-if="$route.name !== 'RSVP'"
+                        v-if="$route.name !== 'RSVP' && userSession.user"
                         class="btn btn--small btn--secondary"
                         to="/rsvp"
-                        >{{ t('profile') }}</RouterLink
                     >
+                        {{ t('profile') }}
+                    </RouterLink>
                     <button
-                        v-else
+                        v-if="userSession.user && $route.name === 'RSVP'"
                         class="btn btn--small btn--secondary"
-                        @click="userSession.signOut"
+                        @click="signOut"
                     >
                         {{ t('signOut') }}
                     </button>
-                </div>
-                <div v-else class="nav-actions">
-                    <RouterLink class="btn btn--small btn--secondary" to="/register">{{
-                        t('signUp')
-                    }}</RouterLink>
-                    <RouterLink class="btn btn--small" to="/login">{{ t('signIn') }}</RouterLink>
+
+                    <RouterLink
+                        v-if="!userSession.user"
+                        class="btn btn--small btn--secondary"
+                        to="/register"
+                    >
+                        {{ t('signUp') }}
+                    </RouterLink>
+                    <RouterLink v-if="!userSession.user" class="btn btn--small" to="/login">
+                        {{ t('signIn') }}
+                    </RouterLink>
                 </div>
             </div>
         </nav>
@@ -54,10 +69,10 @@ const userSession = userSessionStore()
         }
     }
     nav {
-        @apply flex justify-between items-center p-1 pt-4 md:p-4 md:py-2 md:pb-8;
+        @apply flex justify-between items-end sm:items-center p-1 pt-4 md:p-4 md:py-2 md:pb-8 max-w-screen-xl mx-auto;
     }
     .nav-actions {
-        @apply flex gap-2;
+        @apply flex gap-2 mb-2 md:mb-0;
     }
     #logo {
         .circle {

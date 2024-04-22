@@ -13,8 +13,13 @@ import IconStar from './components/icons/IconStar.vue'
 const browserLocale = navigator.language.split('-')[0]
 
 const supportedLocales = ['en', 'it']
+const userLocale = localStorage.getItem('userLocale')
 
-const locale = supportedLocales.includes(browserLocale) ? browserLocale : 'en'
+const locale = userLocale
+    ? userLocale
+    : supportedLocales.includes(browserLocale)
+      ? browserLocale
+      : 'en'
 
 export const i18n = createI18n({
     legacy: false,

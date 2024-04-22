@@ -19,8 +19,6 @@ const userSession = userSessionStore()
 const userGuest = userGuestStore()
 const guestsMeta = guestsMetaStore()
 
-const username = ref(userSession.userProfile?.username || userSession.user?.email || '')
-
 guestsMeta.getRestrictions()
 guestsMeta.getGuestTypes()
 userGuest.getUserGuests()
@@ -88,9 +86,15 @@ function editDialog(guest: StoreGuest) {
 }
 </script>
 <template>
-    <div class="view-wrapper max-w-[90rem] mx-auto" v-show="!userGuest.loadingGuests">
+    <div
+        class="view-wrapper max-w-[90rem] mx-auto"
+        v-show="!userGuest.loadingGuests && !userSession.loadingUser"
+    >
         <h1 class="text-4xl font-serif mb-8">
-            {{ t('welcome') }} <span class="text-copper-200">{{ username }}</span>
+            {{ t('welcome') }}
+            <span class="text-copper-200">{{
+                userSession.userProfile?.username || userSession.user?.email
+            }}</span>
         </h1>
         <p class="mb-8 max-w-prose">{{ t('profileGreetings') }}</p>
         <!-- {{ userSession.session }}

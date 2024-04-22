@@ -57,14 +57,33 @@
         &.btn--secondary {
             @apply bg-teal-700 border-teal-800 focus:bg-teal-800 text-white;
             &:before {
-                @apply bg-teal-800;
+                @apply bg-teal-900;
             }
             &:focus {
                 @apply ring-teal-800;
             }
         }
+        &.btn--dark {
+            @apply bg-cyan-700 border-cyan-800 focus:bg-cyan-800 text-white;
+            &:before {
+                @apply bg-cyan-900;
+            }
+            &:focus {
+                @apply ring-cyan-800;
+            }
+        }
+
         &.btn--small {
-            @apply text-lg py-1 px-4;
+            @apply text-sm sm:text-lg py-1 px-2 sm:px-4;
+        }
+        &.btn--transparent {
+            @apply bg-transparent text-white border-transparent hover:text-copper-300 sm:px-2;
+            &:before {
+                @apply bg-cyan-700;
+            }
+            &:focus {
+                @apply ring-copper-700;
+            }
         }
     }
     .form-input {
