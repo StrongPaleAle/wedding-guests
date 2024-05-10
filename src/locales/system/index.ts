@@ -24,7 +24,8 @@ export const defaultMessages = {
         usernamePlaceholder: 'How should we call you?',
         forgotPassword: 'Forgot password?',
         resetPasswordEmailSent:
-            'An email has been sent to you with instructions to reset your password'
+            'An email has been sent to you with instructions to reset your password',
+        favors: 'Wedding Favors'
     },
     it: {
         welcome: 'Ciao',
@@ -51,6 +52,7 @@ export const defaultMessages = {
         usernamePlaceholder: 'Come possiamo chiamarti?',
         forgotPassword: 'Password dimeticata?',
         resetPasswordEmailSent:
-            "Ti è stata inviata un'email con le istruzioni per resettare la tua password"
+            "Ti è stata inviata un'email con le istruzioni per resettare la tua password",
+        favors: 'Bomboniere'
     }
 }

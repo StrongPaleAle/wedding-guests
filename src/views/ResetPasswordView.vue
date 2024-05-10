@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { userSessionStore } from '@/stores/userSessionStore'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'

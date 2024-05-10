@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { userSessionStore } from '@/stores/userSessionStore'
 import { ref } from 'vue'
 import { useAlerts } from '@/stores/alertsStore'

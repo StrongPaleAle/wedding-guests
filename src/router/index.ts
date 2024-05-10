@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import ResetPasswordView from '@/views/ResetPasswordView.vue'
 import ForgotPasswordView from '@/views/ForgotPasswordView.vue'
 import { userSessionStore } from '@/stores/userSessionStore'
@@ -59,6 +59,11 @@ const router = createRouter({
             path: '/update-password',
             name: 'update-password',
             component: ResetPasswordView
+        },
+        {
+            path: '/something-brewing',
+            name: 'something-brewing',
+            component: () => import('../views/TeaView.vue')
         },
         {
             path: '/:pathMatch(.*)*',
