@@ -3,8 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { homeMessages } from '../locales/home'
 
 const { t } = useI18n({ messages: homeMessages })
-
-defineProps<{
+interface TeaCardProps {
     title: string
     company: string
     companyLink: string
@@ -13,17 +12,24 @@ defineProps<{
     instructions: string
     imageUrl?: string
     imageAlt?: string
+}
+defineProps<{
+    teaCardProps: TeaCardProps
 }>()
 </script>
 <template>
     <div class="card">
-        <img v-if="imageUrl" :src="imageUrl" :alt="imageAlt" />
+        <img
+            v-if="teaCardProps.imageUrl"
+            :src="teaCardProps.imageUrl"
+            :alt="teaCardProps.imageAlt"
+        />
         <div class="card__content">
-            <h2>{{ title }}</h2>
-            <a :href="companyLink">{{ t('from') }}: {{ company }}</a>
-            <p>{{ description }}</p>
-            <p>{{ t('ingredients') }}: {{ ingredients }}</p>
-            <p>{{ t('instructions') }}: {{ instructions }}</p>
+            <h2>{{ teaCardProps.title }}</h2>
+            <a :href="teaCardProps.companyLink">{{ t('from') }}: {{ teaCardProps.company }}</a>
+            <p>{{ teaCardProps.description }}</p>
+            <p>{{ t('ingredients') }}: {{ teaCardProps.ingredients }}</p>
+            <p>{{ t('instructions') }}: {{ teaCardProps.instructions }}</p>
         </div>
     </div>
 </template>

@@ -1,8 +1,21 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import HomeHero from '@/components/Home/HomeHero.vue'
+import { homeMessages } from '../locales/home'
+import TeaCard from '@/components/TeaCard.vue'
 
-const { locale } = useI18n()
+const { t } = useI18n({ messages: homeMessages })
+
+const cherryBlossomTea = {
+    title: t('CBtitle'),
+    company: t('CBcompany'),
+    companyLink: t('CBcompanyLink'),
+    description: t('CBdescription'),
+    ingredients: t('CBingredients'),
+    instructions: t('CBinstructions'),
+    imageUrl: '/assets/images/cherry-blossom-tea.jpg',
+    imageAlt: ''
+}
 </script>
 <template>
     <div>
@@ -12,5 +25,6 @@ const { locale } = useI18n()
         >
             Grazie!
         </h2>
+        <TeaCard :teaCardProps="cherryBlossomTea" />
     </div>
 </template>
