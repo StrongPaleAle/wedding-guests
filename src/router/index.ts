@@ -66,8 +66,8 @@ const router = createRouter({
             component: () => import('../views/TeaView.vue')
         },
         {
-            path: '/cerimony',
-            name: 'cerimony',
+            path: '/ceremony',
+            name: 'ceremony',
             component: () => import('../views/StreamingView.vue')
         },
         {

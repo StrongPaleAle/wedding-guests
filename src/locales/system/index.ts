@@ -25,7 +25,8 @@ export const defaultMessages = {
         forgotPassword: 'Forgot password?',
         resetPasswordEmailSent:
             'An email has been sent to you with instructions to reset your password',
-        favors: 'Wedding Favors'
+        favors: 'Wedding Favors',
+        ceremony: 'Ceremony'
     },
     it: {
         welcome: 'Ciao',
@@ -53,6 +54,7 @@ export const defaultMessages = {
         forgotPassword: 'Password dimeticata?',
         resetPasswordEmailSent:
             "Ti è stata inviata un'email con le istruzioni per resettare la tua password",
-        favors: 'Bomboniere'
+        favors: 'Bomboniere',
+        ceremony: 'Cerimonia'
     }
 }
