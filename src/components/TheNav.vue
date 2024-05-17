@@ -24,9 +24,9 @@ async function signOut() {
             <div>
                 <div class="nav-actions">
                     <AppLocaleSwitcher class="mr-1 sm:mr-2" />
-                    <RouterLink to="/something-brewing" class="btn btn--transparent btn--small">
+                    <!-- <RouterLink to="/something-brewing" class="btn btn--transparent btn--small">
                         {{ t('favors') }}
-                    </RouterLink>
+                    </RouterLink> -->
                     <RouterLink
                         v-if="$route.name !== 'RSVP' && userSession.user"
                         class="btn btn--small btn--secondary"
