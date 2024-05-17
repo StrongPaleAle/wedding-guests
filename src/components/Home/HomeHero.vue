@@ -9,7 +9,7 @@ const order = Math.random() > 0.5
 </script>
 <template>
     <AppStarDivider class="mb-2 md:mb-4" />
-    <h1 class="font-serif text-7xl animate-fade-in-slow">
+    <h1 class="font-serif text-7xl animate-fade-in-slow text-white">
         <span :class="[order ? 'alessio' : 'erika']">{{ order ? 'Alessio' : 'Erika' }}</span>
         <small>&</small>
         <span :class="[!order ? 'alessio' : 'erika']">{{ !order ? 'Alessio' : 'Erika' }}</span>

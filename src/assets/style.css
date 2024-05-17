@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
     html {
-        color-scheme: dark light;
+        color-scheme: dark;
     }
     body {
         @apply antialiased  to-teal-950 via-cyan-950 from-blue-950;
