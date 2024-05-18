@@ -26,7 +26,7 @@ export const defaultMessages = {
         resetPasswordEmailSent:
             'An email has been sent to you with instructions to reset your password',
         favors: 'Wedding Favors',
-        ceremony: 'Ceremony'
+        ceremony: 'Watch the Ceremony'
     },
     it: {
         welcome: 'Ciao',
@@ -55,6 +55,6 @@ export const defaultMessages = {
         resetPasswordEmailSent:
             "Ti è stata inviata un'email con le istruzioni per resettare la tua password",
         favors: 'Bomboniere',
-        ceremony: 'Cerimonia'
+        ceremony: 'Guarda la cerimonia'
     }
 }

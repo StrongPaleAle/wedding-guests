@@ -27,9 +27,7 @@ async function signOut() {
                     <RouterLink to="/something-brewing" class="btn btn--transparent btn--small">
                         {{ t('favors') }}
                     </RouterLink>
-                    <RouterLink to="/ceremony" class="btn btn--transparent btn--small">
-                        {{ t('ceremony') }}
-                    </RouterLink>
+
                     <RouterLink
                         v-if="$route.name !== 'RSVP' && userSession.user"
                         class="btn btn--small btn--secondary"

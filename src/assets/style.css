@@ -74,7 +74,7 @@
         }
 
         &.btn--small {
-            @apply text-sm sm:text-lg py-1 px-2 sm:px-4;
+            @apply text-xs sm:text-lg py-1 px-2 sm:px-4;
         }
         &.btn--transparent {
             @apply bg-transparent text-white border-transparent hover:text-copper-300 sm:px-2;
