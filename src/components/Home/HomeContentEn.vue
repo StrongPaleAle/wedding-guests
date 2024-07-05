@@ -92,17 +92,9 @@
         both in the UK and Italy is incredibly complex.
         <p>
             If you wish to give us a gift, aside from your presence on our wedding day, you could
-            donate to our honeymoon fund:
+            donate to our honeymoon fund.
         </p>
-        <p class="text-center p-4 py-6 rounded-xl bg-cyan-950 bg-opacity-60">
-            <strong>Beneficiary:</strong> Alessio Falchi & Erika Nelli <br /><strong
-                >Sort code:</strong
-            >
-            04-29-09 <br /><strong>Account number:</strong> 64825493 <br /><strong
-                >Bank Name and Address:</strong
-            >
-            <br />Revolut Ltd <small>7 Westferry Circus, E14 4HD, London, United Kingdom</small>
-        </p>
+
         <p>
             We hope to travel to New Zealand in 2025, following Douglas Adams’ naturalistic
             footsteps in his documentary book “Last Chance to See”. (And yes, visit the sets of Lord

@@ -102,15 +102,9 @@
         stati, di cui uno extracomunitario, è estremamente complicato.
         <p>
             Se siete intenzionati a farci un regalo oltre alla vostra presenza, potete contribuire
-            con una donazione al nostro fondo per la Luna di Miele:
+            con una donazione al nostro fondo per la Luna di Miele.
         </p>
-        <p class="text-center p-4 py-6 rounded-xl bg-cyan-950 bg-opacity-60">
-            <strong>Beneficiario:</strong> Alessio Falchi & Erika Nelli <br /><strong>IBAN:</strong>
-            GB69 REVO 0099 7024 4587 42 <br /><strong>SWIFT/BIC:</strong> REVOGB21 <br /><strong
-                >Nome e Indirizzo della Banca:</strong
-            >
-            <br />Revolut Ltd <small>7 Westferry Circus, E14 4HD, London, United Kingdom</small>
-        </p>
+
         <p>
             L’idea è di andare in Nuova Zelanda nel 2025, nel tentativo di ripercorrere i passi
             naturalistici del libro-documentario di Douglas Adams. (Oltre che per i set del Signore
